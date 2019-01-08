@@ -1,6 +1,12 @@
-# EZPZdb
+EZPZdb
 Easy and Redundant 100% JavaScript database.
-  Basic Docs:
+```
+npm install ezpzdb
+```
+```
+const db = require('ezpzdb')('./dirname')
+```
+  <h1>Basic Docs:</h1>
  
  
   <h2>.create(file, value)</h2>
