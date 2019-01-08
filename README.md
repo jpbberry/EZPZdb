@@ -16,7 +16,7 @@ Value: JSON Object (string+bool+int+float)
 
 File: string idicating entry name
 
-Place: the entrys key the location value is stored
+Place: the entries key the location value is stored
 
 Value: New value for Place
 
