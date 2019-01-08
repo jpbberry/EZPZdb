@@ -8,6 +8,7 @@ const db = require('ezpzdb')('./dirname')
 ```
   <h1>Examples</h1>
 <h2> Creating a new entry</h2>
+
 ```
 const db = const db = require('ezpzdb')('./database')
 db.create('entry', {
@@ -16,6 +17,7 @@ db.create('entry', {
 })
 ```
 <h2> Getting values from the entry </h2>
+
 ```
 db.find('entry','place1')
 //Expected response: value1
