@@ -9,7 +9,7 @@ const db = require('ezpzdb')('./dirname')
   <h1>Examples</h1>
 <h2> Creating a new entry</h2>
 
-```
+```js
 const db = const db = require('ezpzdb')('./database')
 db.create('entry', {
   place1: value1,
@@ -18,20 +18,23 @@ db.create('entry', {
 ```
 <h2> Getting values from the entry </h2>
 
-```
+```js
 db.find('entry','place1')
 //Expected response: value1
 ```
 <h2> Setting independent values in an entry/Setting a new value</h2>
+
 ```js
 db.set('entry','place1','value3')
 ```
 <h2> Getting every value in an entry </h2>
+
 ```js
 db.findAll('entry')
 //Expected response: {place1: 'value3', place2: 'value2'}
 ```
 <h2> Deleting an entry or place </h2>
+
 ```js
 db.delete('entry','place2')
 //Deletes single place
