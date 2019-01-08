@@ -11,30 +11,39 @@ File: string idicating entree name
 Value: JSON Object (string+bool+int+float) 
  
  
-  .set(File, Place, Value)
-       File: string idicating entree name
-       Place: the entrees key the location value is stored
-       Value: New value for Place
-  Sets certain place as new value
-  <div />
-  <div />
-  .find(File, Place)
-       File: string idicating entree name
-       Place: Key of whos value you want to get
-  Returns one value from the place in entree File
-  <div />
-  <div />
-  .findAll(File)
-       File: string idicating entree name
-  Returns any and all places with values in JSON object format (stringed)
-  <div />
-  <div />
+  <h2>.set(File, Place, Value)</h2>
+  <h3>Sets certain place as new value</h3>
+
+File: string idicating entree name
+
+Place: the entrees key the location value is stored
+
+Value: New value for Place
+
+
+  <h2>.find(File, Place)</h2>
+  <h3>Returns one value from the place in entree File</h3>
+
+File: string idicating entree name
+
+Place: Key of whos value you want to get
+
+
+  <h2>.findAll(File)</h2>
+  <h3>Returns any and all places with values in JSON object format (stringed)</h3>
+
+File: string idicating entree name
+
   
-  .delete(File,Place)
-       File: string idicating entree name
-       Place: Key of whos value you want to delete
-  Delete's specific place key in entree
+  <h2>.delete(File,Place)</h2>
+  <h3>Delete's specific place key in entree</h3>
+
+File: string idicating entree name
+
+Place: Key of whos value you want to delete
   
-  .deleteAll(File)
-       File: string idicating entree name
-  Remove all places and values and wipe entree completely
+  
+  <h2>.deleteAll(File)</h2>
+  <h3>Remove all places and values and wipe entree completely</h3>
+
+File: string idicating entree name
