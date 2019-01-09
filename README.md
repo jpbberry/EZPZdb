@@ -26,6 +26,9 @@ db.find('entry1','place1')
 <h2> Links</h2>
 
 [Basic Documentation](https://github.com/jpbberry/EZPZdb/wiki/Documentation)
+
 [More Examples](https://github.com/jpbberry/EZPZdb/wiki/Examples)
+
 [GitHub](https://github.com/jpbberry/ezpzdb)
+
 [NPM](https://npmjs.com/package/ezpzdb)
