@@ -10,7 +10,7 @@ const db = require('ezpzdb')('./dirname')
 <h2> Creating a new entry</h2>
 
 ```js
-const db = const db = require('ezpzdb')('./database')
+const db = require('ezpzdb')('./database')
 db.create('entry', {
   place1: value1,
   place2: value2
