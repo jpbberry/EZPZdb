@@ -7,10 +7,12 @@ npm install ezpzdb
 const db = require('ezpzdb')('./dirname')
 ```
   <h1>Examples</h1>
+  ```js
+  const db = require('ezpzdb')('./database')
+  ```
 <h2> Creating a new entry</h2>
 
 ```js
-const db = require('ezpzdb')('./database')
 db.create('entry', {
   place1: value1,
   place2: value2
