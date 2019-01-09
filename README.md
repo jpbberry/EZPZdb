@@ -1,8 +1,8 @@
 EZPZdb
 Easy and Redundant 100% JavaScript database.
-```
-npm install ezpzdb
-```
+
+<a href="https://nodei.co/npm/ezpzdb/"><img src="https://nodei.co/npm/ezpzdb.png?compact=true"></a>
+
 ```
 const db = require('ezpzdb')('./dirname')
 ```
