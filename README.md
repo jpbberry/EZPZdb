@@ -89,3 +89,8 @@ Place: Key of whos value you want to delete
   <h3>Remove all places and values and wipe entry completely</h3>
 
 File: string idicating entry name
+
+<h1>Properties</h1>
+<h2>.directory</h2>
+
+The folder in which the database is being stored
