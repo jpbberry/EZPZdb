@@ -7,6 +7,7 @@ npm install ezpzdb
 const db = require('ezpzdb')('./dirname')
 ```
   <h1>Examples</h1>
+  
   ```js
   const db = require('ezpzdb')('./database')
   ```
