@@ -3,9 +3,6 @@ Easy and Redundant 100% JavaScript database.
 
 <a href="https://nodei.co/npm/ezpzdb/"><img src="https://nodei.co/npm/ezpzdb.png?compact=true"></a>
 
-```
-const db = require('ezpzdb')('./dirname')
-```
   <h1>Examples</h1>
   
   ```js
