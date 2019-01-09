@@ -41,6 +41,15 @@ db.delete('entry','place2')
 db.deleteAll('entry')
 //Removes entry and all of it's values
 ```
+<h2> Using multiple databases </h2>
+
+```js
+const db = require('ezpzdb')
+//No using it as a function
+var db1 = db('./database1')
+var db2 = db('./database2')
+//Both db1 and db2 are set to a databae depending on that directory
+//All of the above and below methods/properties apply to both
 
   <h1>Basic Docs:</h1>
  
