@@ -11,6 +11,7 @@ function EZPZ_DB(dir) {
   this.dir = process.env.PWD+'/'+dir.replace("./","");
   this.fl = function(s) {return dir + '/' + s}
   this.fz = function(s,a) {return dir + '/' + s + "/" + a}
+  this.direct = dir
 }
 
 var fs = require('fs')
@@ -18,7 +19,6 @@ EZPZ_DB.prototype.test = function() {
   console.log('hello world')
 }
 EZPZ_DB.prototype.create = function(f,v) {
-  console.log(this)
   if(fs.existsSync(this.fl(f))) {
     if(fs.readdirSync(this.fl(f)).length > 0) {
       fs.readdirSync(this.fl(f)).forEach(a => {
@@ -62,6 +62,17 @@ EZPZ_DB.prototype.findAll = function(f) {
     return res
   }
 }
+EZPZ_DB.prototype.getAll = function() {
+  let res = {}
+  fs.readdirSync(this.direct).forEach(a => {
+    let tr = {}
+    fs.readdirSync(this.fl(a)).forEach(b => {
+      tr[b] = fs.readFileSync(this.fz(a,b)).toString()
+    })
+    res[a] = tr
+  })
+  return res;
+}
 EZPZ_DB.prototype.delete = function(f,p) {
   if(!fs.existsSync(this.fz(f,p))) {
     throw new Error('Entry or Place does not exist!')
@@ -80,6 +91,42 @@ EZPZ_DB.prototype.deleteAll = function(f) {
     }
     fs.rmdirSync(this.fl(f))
   }
+}
+EZPZ_DB.prototype.remove = function() {
+  fs.readdirSync(this.direct).forEach(a => {
+    this.deleteAll(a)
+  })
+}
+EZPZ_DB.prototype.setNewDir = function(dir) {
+  if(!dir) {
+    throw new Error('Did not define new directory!')
+  }
+  if(!fs.existsSync(dir)) {
+    fs.mkdirSync(dir)
+  }
+  this.dir = process.env.PWD+'/'+dir.replace("./","");
+  this.fl = function(s) {return dir + '/' + s}
+  this.fz = function(s,a) {return dir + '/' + s + "/" + a}
+  this.direct = dir
+}
+EZPZ_DB.prototype.backup = EZPZ_DB.prototype.export = function(bp) {
+  if(!bp) {
+    throw new Error('No backup file defined')
+  }
+  fs.writeFileSync(bp,JSON.stringify(this.getAll()))
+}
+EZPZ_DB.prototype.import = function(bp,rw) {
+  rew = rw||false
+  if(rew) {
+    this.remove()
+  }
+  if(!fs.existsSync(bp)) {
+    throw new Error('Backup file not defined')
+  }
+  let nb = JSON.parse(fs.readFileSync(bp))
+  Object.keys(nb).forEach(a => {
+    this.create(a,nb[a])
+  })
 }
 
 module.exports = EZPZ_DB
