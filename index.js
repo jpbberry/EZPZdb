@@ -1,4 +1,6 @@
-function EZPZ_DB(dir) {
+var CryptoJS = require('cryptojs')
+var fs = require('fs')
+function EZPZ_DB(dir,pass) {
   if(!dir) {
     throw new Error('Did not define directory!')
   }
@@ -8,13 +10,25 @@ function EZPZ_DB(dir) {
   if(!fs.existsSync(dir)) {
     fs.mkdirSync(dir)
   }
+  if(!pass) {
+    this.encrypt = function(m) {return m}
+    this.decrypt = function(m) {return m}
+  } else {
+    this.encrypt = function(m) {return CryptoJS.Crypto.AES.encrypt(m,pass)}
+    this.decrypt = function(m) {
+      try {
+        let k = CryptoJS.Crypto.AES.decrypt(m,pass)
+        return k
+      } catch(err) {
+        throw new Error('Incorrect Password!')
+      }
+    }
+  }
   this.dir = process.env.PWD+'/'+dir.replace("./","");
   this.fl = function(s) {return dir + '/' + s}
   this.fz = function(s,a) {return dir + '/' + s + "/" + a}
   this.direct = dir
 }
-
-var fs = require('fs')
 EZPZ_DB.prototype.test = function() {
   console.log('hello world')
 }
@@ -29,7 +43,7 @@ EZPZ_DB.prototype.create = function(f,v) {
   }
   fs.mkdirSync(this.fl(f))
   for(i=0;i<Object.keys(v).length;i++) {
-    fs.writeFile(this.fz(f,Object.keys(v)[i].toString()),v[Object.keys(v)[i]], (err) => {
+    fs.writeFile(this.fz(f,Object.keys(v)[i].toString()),this.encrypt(v[Object.keys(v)[i]]), (err) => {
       if(err) {
         return err
       }
@@ -40,13 +54,13 @@ EZPZ_DB.prototype.set = function(f,p,v) {
   if(!fs.existsSync(this.fl(f))) {
     fs.mkdirSync(this.fl(f))
   }
-  fs.writeFileSync(this.fz(f,p),v)
+  fs.writeFileSync(this.fz(f,p),this.encrypt(v))
 }
 EZPZ_DB.prototype.find = function(f,p) {
   if(!fs.existsSync(this.fl(f))) {
     throw new Error('Entry does not exist!')
   } else {
-    return fs.readFileSync(this.fz(f,p)).toString()
+    return this.decrypt(fs.readFileSync(this.fz(f,p)).toString())
   }
 }
 EZPZ_DB.prototype.findAll = function(f) {
@@ -56,7 +70,7 @@ EZPZ_DB.prototype.findAll = function(f) {
     var res = {}
     let k = fs.readdirSync(this.fl(f))
     k.forEach(fe => {
-      let va = fs.readFileSync(this.fz(f,fe)).toString()
+      let va = this.decrypt(fs.readFileSync(this.fz(f,fe)).toString())
       res[fe] = va
     })
     return res
@@ -67,7 +81,7 @@ EZPZ_DB.prototype.getAll = function() {
   fs.readdirSync(this.direct).forEach(a => {
     let tr = {}
     fs.readdirSync(this.fl(a)).forEach(b => {
-      tr[b] = fs.readFileSync(this.fz(a,b)).toString()
+      tr[b] = this.decrypt(fs.readFileSync(this.fz(a,b)).toString())
     })
     res[a] = tr
   })
