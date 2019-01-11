@@ -5,7 +5,7 @@ EZPZdb is an easy to use directory per entry, file per place and value database 
 EZPZdb is in it's beta stages so a lot of functionality is planned for the future.
 
 <h2>Installing</h2>
-Simply add the package and nothing else. It's a standalone package only requiring a built in node feature (fs)
+Simply install the package with the command below. Once done it will install the EZPZdb package along with cryptojs which is used to encrypt values when password is given. It also uses a default node program called fs.
 
 ```npm install ezpzdb```
 
